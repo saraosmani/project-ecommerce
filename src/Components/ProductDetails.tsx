@@ -1,3 +1,4 @@
+import { useQuery, gql } from '@apollo/client';
 
 const ProductDetails = () => {
     return (
