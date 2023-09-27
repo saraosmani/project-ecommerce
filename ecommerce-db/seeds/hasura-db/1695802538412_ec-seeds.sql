@@ -1,4 +1,8 @@
-INSERT INTO categories (id, name) VALUES
-    (1, 'Category 1'),
-    (2, 'Category 2'),
-    (3, 'Category 3');
+INSERT INTO categories (id, title) VALUES
+    (1, 'Women'),
+    (2, 'Men');
+
+
+INSERT INTO subCategories (id, name) VALUES
+    (1, 'shirt'),
+    (2, 'jumper');
