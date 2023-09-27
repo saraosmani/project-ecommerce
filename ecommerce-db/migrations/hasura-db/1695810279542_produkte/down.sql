@@ -1,2 +1,2 @@
 -- Drop the products table
-DROP TABLE  products;
+DROP TABLE  produktet;
