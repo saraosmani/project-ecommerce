@@ -31,6 +31,8 @@ const PRODUCTS = gql`
   }
 `;
 
+
+
 export default function ProductCard() {
   const { data } = useQuery<{ produktet: Products[] }>(PRODUCTS); // Destructure 'data'
   console.log('PRODUKTE', data);

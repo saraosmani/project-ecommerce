@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignIn from './Components/SignIn'
 import ProductCard from './Components/ProductCard'
 import ProductDetails from './Components/ProductDetails'
-import SubcategoryPage from './Components/SubcategoryPage'
+import SubcategoryPage from './Components/SubcategoryPage/SubcategoryPage'
 
 
 function App() {
