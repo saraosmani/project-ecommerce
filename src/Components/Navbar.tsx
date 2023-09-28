@@ -12,10 +12,31 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
+
+interface Category {
+    id: number;
+    title: string;
+  }
+
+const CATEGORIES= gql`query MyQuery {
+    categories {
+      title
+      id
+    }
+  }`
 
 function Navbar() {
+    const {categoryTitle} = useParams();
     const [drawer, setDrawer] = useState(false)
+    const { loading, error, data } = useQuery<{ categories: Category[] }>(CATEGORIES, {
+        variables: {
+            title: categoryTitle
+        }
+    });
+    console.log("category",data)
+
 
     const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
         if (
@@ -28,11 +49,7 @@ function Navbar() {
         setDrawer(open);
     };
 
-    const menuItems = [
-        { text: 'Women', link: '/women' },
-        { text: 'Men', link: '/men' },
 
-    ];
     return (
         <div>
             <AppBar position="static" sx={{ width: "100%" }}>
@@ -64,19 +81,13 @@ function Navbar() {
                         edge="start">
                         <CloseIcon />
                     </IconButton>
-                    <List
-                        sx={{ width: "350px" }}>
-                        {menuItems.map((item) => (
-                            <ListItem
-                                button
-                                key={item.text}
-                                component={Link}
-                                to={item.link}
-                            >
-                                <ListItemText primary={item.text} />
-                            </ListItem>
-                        ))}
-                    </List>
+                    <List sx={{ width: '350px' }}>
+            {data?.categories.map((item) => (
+              <ListItem button key={item.id} component={Link} to={`/category/${item.title.toLocaleLowerCase()}`} >
+                <ListItemText primary={item.title} />
+              </ListItem>
+            ))}
+          </List>
                 </div>
             </Drawer>
         </div>
