@@ -1,38 +1,39 @@
-import React from 'react'
 import { useQuery, gql } from '@apollo/client';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card,  CardMedia,  } from '@mui/material';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import "../SubcategoryPage/SubcategoryPage.css"
 
 interface Subcategory {
   category_id: number;
+  category_title: string;
   subcategory_image_url: string;
   subcategory_name: string;
   } 
 
 const SUBCATEGORY= gql`
-query MyQuery($categoryId: Int!) {
-  subcategory_categories_view(where: {category_id: {_eq: $categoryId}}) {
+query MyQuery($title: String!) {
+  subcategory_categories_view(where: {category_title: {_eq: $title}}) {
     subcategory_image_url
     subcategory_name
     category_id
   }
 }
-
   `
 
 const SubcategoryPage = () => {
-    const { categoryTitle} = useParams();
+    const { categoryTitle } = useParams();
 
-
+    
     const data=useQuery<{ subcategory_categories_view: Subcategory[] }>(SUBCATEGORY, {
       variables: {
-        categoryId: 
+        title: categoryTitle
       }
     }
       )
+
     console.log("subcategory",data)
+    
   return (
     <div className="card-container">
       {data?.data?.subcategory_categories_view.map((item) => (
@@ -55,6 +56,5 @@ const SubcategoryPage = () => {
 }
 
 export default SubcategoryPage
-
 
 
