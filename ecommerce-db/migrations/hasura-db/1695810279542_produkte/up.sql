@@ -6,3 +6,4 @@ CREATE TABLE produktet (
   description TEXT,
   image_url VARCHAR(255)
 );
+
