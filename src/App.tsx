@@ -17,9 +17,9 @@ function App() {
         <Route path='/' element={<SignIn/>}/>
         <Route path='/product-details' element={<ProductDetails/>}/>
         <Route path='/category/:categoryTitle' element={<SubcategoryPage/>}>
-          {/* <Route path='/:subCategoryTitle' element={<ProductCard/>}></Route> */}
+        <Route path='/:subCategoryTitle' element={<ProductCard/>}></Route>
         </Route>
-        <Route path='/category/:categoryTitle/:subCategoryTitle' element={<ProductCard/>}></Route>
+        {/* <Route path='/category/:categoryTitle/:subCategoryTitle' element={<ProductCard/>}></Route> */}
       </Routes>
     </BrowserRouter>
   )
