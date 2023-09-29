@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Typography from '@mui/material/Typography';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import { useQuery, gql } from '@apollo/client';
 import Grid from '@mui/material/Grid'; // Import Grid component
 import { useParams, Link } from 'react-router-dom';
