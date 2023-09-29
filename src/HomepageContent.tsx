@@ -1,4 +1,4 @@
-const Bigu = () => {
+const HomepageContent = () => {
   return (
     <div>
       <p>asdsadasdsa</p>
@@ -6,4 +6,4 @@ const Bigu = () => {
   )
 }
 
-export default Bigu
+export default HomepageContent

@@ -1,6 +1,6 @@
 import Navbar from './Navbar'
 import { Outlet } from 'react-router-dom'
-const HomePAge = () => {
+const HomePage = () => {
   return (
     <div>
       <Navbar />
@@ -9,4 +9,4 @@ const HomePAge = () => {
   )
 }
 
-export default HomePAge
+export default HomePage

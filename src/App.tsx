@@ -5,8 +5,11 @@ import ProductCard from './Components/ProductCard'
 import ProductDetails from './Components/ProductDetails'
 import SubcategoryPage from './Components/SubcategoryPage/SubcategoryPage'
 // import Navbar from './Components/Navbar'
-import Bigu from "./Bigu"
-import HomePAge from './Components/HomePAge'
+import HomepageContent from "./HomepageContent"
+import HomePage from './Components/HomePAge'
+import Cart from './Components/Cart'
+import Wishlist from './Components/WIshlist'
+import UserProfile from './Components/UserProfile'
 function App() {
 
 
@@ -14,12 +17,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePAge/>}>
-        <Route index element={<Bigu />}/>
+        <Route path='/' element={<HomePage/>}>
+        <Route index element={<HomepageContent />}/>
         <Route path="category" element={<ProductCard />}/>
         <Route path='category/:categoryTitle' element={<SubcategoryPage/>}/>
         <Route path='category/:categoryTitle/:subCategoryTitle' element={<ProductCard/>}/>
         <Route path='category/:categoryTitle/:subCategoryTitle/:productId' element={<ProductDetails/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/wishlist' element={<Wishlist/>}/>
+        <Route path='/user-profile' element={<UserProfile/>}/>
         </Route>
         {/* <Route path='/' element={<SignIn/>}/> */}
       </Routes>

@@ -88,19 +88,23 @@ function Navbar() {
             <AppBar position="fixed" sx={{ width: '100%' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-                    <IconButton color="inherit" sx={{ marginRight: '8px' }}>
+                    <IconButton color="inherit" sx={{ marginRight: '8px' }}  component={Link}
+                        to={"/user-profile"}>
                         <AccountCircleIcon />
                     </IconButton>
-                    <IconButton color="inherit" sx={{ marginRight: '8px' }}>
+                    <IconButton color="inherit" sx={{ marginRight: '8px' }}
+                        component={Link}
+                        to={"/wishlist"}>
                         <FavoriteIcon />
                     </IconButton>
-                    <IconButton color="inherit" sx={{ marginRight: '8px' }}>
+                    <IconButton color="inherit" sx={{ marginRight: '8px' }} component={Link}
+                        to={"/cart"}>
                         <ShoppingCartIcon />
                     </IconButton>
                     <IconButton color="inherit" onClick={toggleDrawer(true)} edge="start" sx={{
                         marginLeft: '10px',
                         boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-                       
+
                     }}>
                         <MenuIcon />
                     </IconButton>
