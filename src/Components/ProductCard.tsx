@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Navbar from './Navbar';
 import { useQuery, gql } from '@apollo/client';
 import Grid from '@mui/material/Grid'; // Import Grid component
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 interface Products {
   subcategory_name: string;
@@ -18,15 +18,18 @@ interface Products {
   produktet_image_url: string;
   produktet_price: string;
   subcategory_id: number;
+  category_title: string;
+  produktet_id: number;
 }
 
 const PRODUCTS = gql`
-query MyQuery($subCategoryTitle: String!) {
-  subcategory_produktet_view(where: {subcategory_name: {_eq: $subCategoryTitle}}) {
+
+query MyQuery($subCategoryTitle: String!, $categoryTitle: String!) {
+  subcategory_produktet_view(where: {category_title: {_eq: $categoryTitle}, subcategory_name: {_eq: $subCategoryTitle}}) {
     produktet_name
     produktet_image_url
-    produktet_price
-    subcategory_id
+    produktet_description
+    produktet_id
   }
 }
 
@@ -35,19 +38,17 @@ query MyQuery($subCategoryTitle: String!) {
 
 
 export default function ProductCard() {
-  const {subCategoryTitle}= useParams()
+  const {subCategoryTitle, categoryTitle}= useParams()
   const { data } = useQuery<{  subcategory_produktet_view: Products[] }>(PRODUCTS, {
     variables: {
-      subCategoryTitle: subCategoryTitle
+      subCategoryTitle: subCategoryTitle, 
+      categoryTitle: categoryTitle
     }
   }); // Destructure 'data'
   console.log('PRODUKTE', data);
 
   return (
     <>
-      <div>
-        <Navbar />
-      </div>
       <div>
         <Grid container spacing={2} style={{marginTop: '10px', marginLeft: '10px'}}> {/* Create a Grid container */}
           {data?.subcategory_produktet_view.map((item) => (
@@ -67,7 +68,10 @@ export default function ProductCard() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Details</Button>
+                  <Link to={`/category/${categoryTitle}/${subCategoryTitle}/${item.produktet_id}`}>
+                    <Button size="small">Details</Button>
+                  </Link>
+                  
                   <IconButton color="primary" size="small">
                     <FavoriteBorderIcon />
                   </IconButton>
