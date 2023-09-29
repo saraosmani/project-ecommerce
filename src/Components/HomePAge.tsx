@@ -4,7 +4,7 @@ const HomePAge = () => {
   return (
     <div>
       <Navbar />
-      <div><Outlet /></div>
+      <div style={{marginTop:"4%"}}><Outlet /></div>
     </div>
   )
 }

@@ -1,10 +1,10 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import SignIn from './Components/SignIn'
+// import SignIn from './Components/SignIn'
 import ProductCard from './Components/ProductCard'
 import ProductDetails from './Components/ProductDetails'
 import SubcategoryPage from './Components/SubcategoryPage/SubcategoryPage'
-import Navbar from './Components/Navbar'
+// import Navbar from './Components/Navbar'
 import Bigu from "./Bigu"
 import HomePAge from './Components/HomePAge'
 function App() {
