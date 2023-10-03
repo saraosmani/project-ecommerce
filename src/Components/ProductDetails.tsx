@@ -73,7 +73,7 @@
 
 
 //test
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -86,6 +86,13 @@ interface ProductDetails {
   name: string;
   description: string;
   price: string;
+}
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  quantity: number;
 }
 
 const PRODUCT_DETAILS = gql`
@@ -103,6 +110,7 @@ const PRODUCT_DETAILS = gql`
 const ProductDetails = () => {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1); 
+  const [cartItems, setCartItems] =  useState<CartItem[]>([]);
   console.log('productttttt iddd', productId);
   const { data } = useQuery<{ produktet: ProductDetails[] }>(PRODUCT_DETAILS);
 
@@ -126,10 +134,18 @@ const ProductDetails = () => {
       setQuantity(quantity - 1);
     }
   };
-
-  const addToCart = () =>{
-    console.log('addedd to cart')
-  }
+  const addToCart = (productId: number) => {
+    // Create a new cart item by spreading the existing cart items and adding the new product
+    const newCartItem = {
+      id: productId,
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    };
+console.log('new item added', newCartItem)
+    // Add the new cart item to the cartItems state
+    setCartItems([...cartItems, newCartItem]);
+  };
 
   return (
     <Box
@@ -180,7 +196,7 @@ const ProductDetails = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={addToCart}
+            onClick={() => addToCart(product.id)}
             style={{ marginTop: '20px' }}
           >
             Add to Cart

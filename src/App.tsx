@@ -10,9 +10,8 @@ import HomePage from './Components/HomePAge'
 import Cart from './Components/Cart'
 import Wishlist from './Components/WIshlist'
 import UserProfile from './Components/UserProfile'
+
 function App() {
-
-
 
   return (
     <BrowserRouter>
