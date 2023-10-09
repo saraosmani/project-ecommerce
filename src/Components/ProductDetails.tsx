@@ -73,12 +73,13 @@
 
 
 //test
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button'; 
+import { AppContext } from '../Context/Context';
 
 interface ProductDetails {
   id: number;
@@ -113,6 +114,7 @@ const ProductDetails = () => {
   const [cartItems, setCartItems] =  useState<CartItem[]>([]);
   console.log('productttttt iddd', productId);
   const { data } = useQuery<{ produktet: ProductDetails[] }>(PRODUCT_DETAILS);
+  const {addToCart} =useContext(AppContext)
 
   if (!data) {
     return <div>Loading...</div>;
@@ -134,18 +136,23 @@ const ProductDetails = () => {
       setQuantity(quantity - 1);
     }
   };
-  const addToCart = (productId: number) => {
-    // Create a new cart item by spreading the existing cart items and adding the new product
-    const newCartItem = {
-      id: productId,
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-    };
-console.log('new item added', newCartItem)
-    // Add the new cart item to the cartItems state
-    setCartItems([...cartItems, newCartItem]);
-  };
+//   const addToCart = (productId: number) => {
+//     // Create a new cart item by spreading the existing cart items and adding the new product
+//     const newCartItem = {
+//       id: productId,
+//       name: product.name,
+//       price: product.price,
+//       quantity: quantity,
+//     };
+// console.log('new item added', newCartItem)
+//     // Add the new cart item to the cartItems state
+//     setCartItems([...cartItems, newCartItem]);
+//   };
+
+const handleButtonClick= (product) => {
+  console.log('produkti shtuaarrr', product)
+  addToCart(product)
+}
 
   return (
     <Box
@@ -196,7 +203,7 @@ console.log('new item added', newCartItem)
           <Button
             variant="contained"
             color="primary"
-            onClick={() => addToCart(product.id)}
+            onClick={() => handleButtonClick(product.id)}
             style={{ marginTop: '20px' }}
           >
             Add to Cart

@@ -1,8 +1,16 @@
+import { useContext } from "react"
+import { AppContext } from "../Context/Context"
 
 const Cart = () => {
+
+  const {cartItems}= useContext(AppContext);
+
+  console.log('cartItemsssss', cartItems)
   return (
     <div>
-      Cart
+      {cartItems.map((product) => (
+        <p> {product.name} </p>
+      ))}
     </div>
   )
 }

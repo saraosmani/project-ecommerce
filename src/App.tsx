@@ -6,15 +6,18 @@ import ProductDetails from './Components/ProductDetails'
 import SubcategoryPage from './Components/SubcategoryPage/SubcategoryPage'
 // import Navbar from './Components/Navbar'
 import HomepageContent from "./HomepageContent"
-import HomePage from './Components/HomePAge'
+import HomePage from './Components/HomePage'
 import Cart from './Components/Cart'
-import Wishlist from './Components/WIshlist'
+import Wishlist from './Components/Wishlist'
 import UserProfile from './Components/UserProfile'
+import AppProvider from './Context/Context'
 
 function App() {
 
   return (
+    <AppProvider>
     <BrowserRouter>
+    
       <Routes>
         <Route path='/' element={<HomePage/>}>
         <Route index element={<HomepageContent />}/>
@@ -28,7 +31,10 @@ function App() {
         </Route>
         {/* <Route path='/' element={<SignIn/>}/> */}
       </Routes>
+
     </BrowserRouter>
+    </AppProvider>
+ 
   )
 }
 
