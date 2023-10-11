@@ -14,12 +14,12 @@ interface ProductDetails {
   price: string;
 }
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: string;
-  quantity: number;
-}
+// interface CartItem {
+//   id: number;
+//   name: string;
+//   price: string;
+//   quantity: number;
+// }
 
 const PRODUCT_DETAILS = gql`
   query MyQuery {
@@ -96,7 +96,7 @@ console.log('datatt e product details', data?.produktet)
 //   setCartItems([...cartItems, product]);
 // };
 
-  const handleButtonClick = (product) => {
+  const handleButtonClick = (product: ProductDetails) => {
     console.log('produkti ne handle click', product)
 
     if(product){
