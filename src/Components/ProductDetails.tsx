@@ -14,13 +14,6 @@ interface ProductDetails {
   price: string;
 }
 
-// interface CartItem {
-//   id: number;
-//   name: string;
-//   price: string;
-//   quantity: number;
-// }
-
 const PRODUCT_DETAILS = gql`
   query MyQuery {
     produktet {
@@ -64,37 +57,6 @@ console.log('datatt e product details', data?.produktet)
     }
   };
 
-//   const addToCart = (productId: number) => {
-//     // Create a new cart item by spreading the existing cart items and adding the new product
-//     const newCartItem = {
-//       id: productId,
-//       name: product.name,
-//       price: product.price,
-//       quantity: quantity,
-//     };
-// console.log('new item added', newCartItem)
-//     // Add the new cart item to the cartItems state
-//     setCartItems([...cartItems, newCartItem]);
-//   };
-
-
-// const addToCart = (productId: number) => {
-//   const addedProducts = [...cartItems];
-
-//   const product = addedProducts.find((p) => p.id === productId);
-//   console.log("add to cart func",product);
-
-//   if (product) {
-//     addedProducts.push({
-//       id: productId,
-//       // image: product.image,
-//       name: product.name,
-//     });
-//   }
-
-//   console.log('')
-//   setCartItems([...cartItems, product]);
-// };
 
   const handleButtonClick = (product: ProductDetails) => {
     console.log('produkti ne handle click', product)
