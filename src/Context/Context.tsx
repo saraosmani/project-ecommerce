@@ -1,15 +1,13 @@
 import React, { createContext, useState } from 'react';
 
-// Define the CartItem type
 interface CartItem {
   id: number;
   image: string;
   name: string;
-  // Add other properties if needed
+  price: string;
 }
 
-10
-*---------------------*export const AppContext = createContext<{
+export const AppContext = createContext<{
   addToCart: (productId: number) => void;
   cartItems: CartItem[];
 }>({
@@ -18,32 +16,70 @@ interface CartItem {
 });
 
 export default function AppProvider({ children }: { children: React.ReactNode }) {
-  // Initialize cartItems as an empty array
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (productId: number) => {
-    const addedProducts = [...cartItems];
+  // const addToCart = (productId: number) => {
+  //   const addedProducts = [...cartItems];
 
-    // Assuming you have a product variable here
-    const product = addedProducts.find((p) => p.id === productId);
-    console.log("prod",product)
-    if (product) {
+  //   const product = addedProducts.find((p) => p.id === productId);
+  //   console.log("add to cart func",product);
+
+  //   if (product) {
+  //     addedProducts.push({
+  //       id: productId,
+  //       image: product.image,
+  //       name: product.name,
+  //     });
+  //   }
+
+  //   console.log('')
+  //   setCartItems([...cartItems, product]);
+  // };
+
+    // const addToCart = (productId: number) => {
+
+    //   const addedProducts = [...cartItems];
+
+    //   const product = addedProducts.find((p) => p.id === productId);
+    //   console.log("add to cart func",product);
+
+      
+    //     const newCartItem = {
+    //       id: productId,
+    //       name: product.name,
+    //     };
+    //   console.log('new item added', newCartItem)
+    //   setCartItems([...cartItems, newCartItem]);
+    //   };
+
+    const addToCart = (product) => {
+
+      const addedProducts = [...cartItems];
+
+  
+  // const existingProduct = addedProducts.find((p) => p.id === product.id);
+
+
       addedProducts.push({
-        id: productId,
-        image: product.image,
+        id: product.id,
         name: product.name,
+        price: product.price,
+        image: product.image
+      
       });
-    }
+    
 
-    // Update the cartItems state
-    setCartItems(addedProducts);
-  };
+      setCartItems([...addedProducts]);
 
-  // Define the context value
-  const contextValue = {
-    addToCart,
-    cartItems,
-  };
+      console.log('added products statee', addedProducts)
+    };
+
+
+
+      const contextValue = {
+        addToCart,
+        cartItems,
+      };
 
   return (
     <AppContext.Provider value={contextValue}>
@@ -51,3 +87,4 @@ export default function AppProvider({ children }: { children: React.ReactNode })
     </AppContext.Provider>
   );
 }
+

@@ -15,7 +15,7 @@ import AppProvider from './Context/Context'
 function App() {
 
   return (
-    <AppProvider>
+  <AppProvider>
     <BrowserRouter>
     
       <Routes>

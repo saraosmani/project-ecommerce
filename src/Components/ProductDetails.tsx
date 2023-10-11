@@ -1,78 +1,3 @@
-// import { useQuery, gql } from '@apollo/client';
-// import { useParams } from 'react-router-dom';
-// import Paper from '@mui/material/Paper';
-// import Typography from '@mui/material/Typography';
-
-//  interface ProductDetails {
-
-//   id: number;
-//   image_url: string;
-//   name: string;
-//   description: string;
-//   price: string;
-
-//  }
-
- 
-
-// const PRODUCT_DETAILS = gql`
-
-// query MyQuery {
-//     produktet {
-//       id
-//       image_url
-//       name
-//       description
-//       price
-
-//     }
-//  }
-// `
-
- 
-// const ProductDetails = () => {
-
-//   const { productId} = useParams();
-//   console.log('productttttt iddd', productId)
-//   const { data } = useQuery<{  produktet: ProductDetails[] }>(PRODUCT_DETAILS); // Destructure 'data'
-//   console.log('PRODUKTE', data);
-
-//   if (!data) {
-//     return <div>Loading...</div>;
-//   }
-
-//   const product = data.produktet.find((p) => p.id === parseInt(productId, 10));
-
-//   if (!product) {
-//     return <div>Product not found</div>;
-//   }
-
-
-//     return (
-//       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//       <Paper style={{ display: 'flex', alignItems: 'center', padding: '20px' }}>
-//         <img src={product.image_url} alt={product.name} style={{ width: '200px', height: '200px', marginRight: '20px' }} />
-//         <div>
-//           <Typography variant="h4" gutterBottom>
-//             {product.name}
-//           </Typography>
-
-//           <Typography variant="body1" paragraph>
-//             {product.description}
-//           </Typography>
-
-//           <Typography variant="h6">
-//             Price: {product.price}
-//           </Typography>
-//         </div>
-//       </Paper>
-//     </div>
-//     )
-//   }
-//   export default ProductDetails
-
-
-//test
 import { useContext, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -111,10 +36,12 @@ const PRODUCT_DETAILS = gql`
 const ProductDetails = () => {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1); 
-  const [cartItems, setCartItems] =  useState<CartItem[]>([]);
-  console.log('productttttt iddd', productId);
+  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
   const { data } = useQuery<{ produktet: ProductDetails[] }>(PRODUCT_DETAILS);
-  const {addToCart} =useContext(AppContext)
+console.log('datatt e product details', data?.produktet)
+
+  const { addToCart } =useContext(AppContext)
 
   if (!data) {
     return <div>Loading...</div>;
@@ -136,6 +63,7 @@ const ProductDetails = () => {
       setQuantity(quantity - 1);
     }
   };
+
 //   const addToCart = (productId: number) => {
 //     // Create a new cart item by spreading the existing cart items and adding the new product
 //     const newCartItem = {
@@ -149,10 +77,34 @@ const ProductDetails = () => {
 //     setCartItems([...cartItems, newCartItem]);
 //   };
 
-const handleButtonClick= (product) => {
-  console.log('produkti shtuaarrr', product)
-  addToCart(product)
-}
+
+// const addToCart = (productId: number) => {
+//   const addedProducts = [...cartItems];
+
+//   const product = addedProducts.find((p) => p.id === productId);
+//   console.log("add to cart func",product);
+
+//   if (product) {
+//     addedProducts.push({
+//       id: productId,
+//       // image: product.image,
+//       name: product.name,
+//     });
+//   }
+
+//   console.log('')
+//   setCartItems([...cartItems, product]);
+// };
+
+  const handleButtonClick = (product) => {
+    console.log('produkti ne handle click', product)
+
+    if(product){
+      console.log('product added', product);
+      addToCart(product);
+    }
+
+  }
 
   return (
     <Box
@@ -203,7 +155,7 @@ const handleButtonClick= (product) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => handleButtonClick(product.id)}
+            onClick={() => handleButtonClick(product)}
             style={{ marginTop: '20px' }}
           >
             Add to Cart

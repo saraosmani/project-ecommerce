@@ -5,11 +5,15 @@ const Cart = () => {
 
   const {cartItems}= useContext(AppContext);
 
-  console.log('cartItemsssss', cartItems)
+  console.log('cartItemssssssss', cartItems)
   return (
     <div>
       {cartItems.map((product) => (
-        <p> {product.name} </p>
+        <div>
+          <p> {product.id} </p>
+          <p> {product.name} </p>
+          <p> {product.price} </p>
+        </div>
       ))}
     </div>
   )
