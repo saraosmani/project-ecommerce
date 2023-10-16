@@ -63,8 +63,6 @@ const ProductDetails = () => {
       addToCart(product);
     }
 
-   
-
   }
 
   return (
