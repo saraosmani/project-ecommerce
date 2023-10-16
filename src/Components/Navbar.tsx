@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -15,6 +15,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { AppContext } from '../Context/Context';
+import { Badge } from '@mui/material';
 
 interface Category {
     id: number;
@@ -51,6 +53,8 @@ function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
+    const { cartItemCount } = useContext(AppContext);
+
     const { data } = useQuery<{ categories: Category[] }>(CATEGORIES, {
         variables: {
             title: categoryTitle,
@@ -60,9 +64,9 @@ function Navbar() {
     const { data: subcategoriesData } =
         useQuery<{ subcategory_categories_view: Subcategory[] }>(SUBCATEGORY, {
             variables: {
-                title: hoveredCategory || '', // Use the hovered category to fetch subcategories
+                title: hoveredCategory || '', 
             },
-            skip: !hoveredCategory, // Skip the query if there's no hovered category
+            skip: !hoveredCategory, 
         });
 
     const handleCategoryMouseEnter = (title: string) => {
@@ -99,7 +103,11 @@ function Navbar() {
                     </IconButton>
                     <IconButton color="inherit" sx={{ marginRight: '8px' }} component={Link}
                         to={"/cart"}>
-                        <ShoppingCartIcon />
+                            <Badge badgeContent={cartItemCount} color='secondary'>
+                            <ShoppingCartIcon />
+                            </Badge>
+                            
+                        
                     </IconButton>
                     <IconButton color="inherit" onClick={toggleDrawer(true)} edge="start" sx={{
                         marginLeft: '10px',

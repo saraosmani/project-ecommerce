@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button'; 
 import { AppContext } from '../Context/Context';
 
+
 interface ProductDetails {
   id: number;
   image_url: string;
@@ -29,10 +30,8 @@ const PRODUCT_DETAILS = gql`
 const ProductDetails = () => {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1); 
-  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const { data } = useQuery<{ produktet: ProductDetails[] }>(PRODUCT_DETAILS);
-console.log('datatt e product details', data?.produktet)
 
   const { addToCart } =useContext(AppContext)
 
@@ -59,12 +58,12 @@ console.log('datatt e product details', data?.produktet)
 
 
   const handleButtonClick = (product: ProductDetails) => {
-    console.log('produkti ne handle click', product)
 
     if(product){
-      console.log('product added', product);
       addToCart(product);
     }
+
+   
 
   }
 
@@ -122,6 +121,7 @@ console.log('datatt e product details', data?.produktet)
           >
             Add to Cart
           </Button>
+
         </Box>
       </Box>
     </Box>
@@ -129,3 +129,5 @@ console.log('datatt e product details', data?.produktet)
 };
 
 export default ProductDetails;
+
+
