@@ -6,12 +6,13 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Typography from '@mui/material/Typography';
-// import Navbar from './Navbar';
 import { useQuery, gql } from '@apollo/client';
-import Grid from '@mui/material/Grid'; // Import Grid component
+import Grid from '@mui/material/Grid'; 
 import { useParams, Link } from 'react-router-dom';
+import { AppContext } from "../Context/Context";
+import { useContext } from 'react';
 
-interface Products {
+interface ProductCard {
   subcategory_name: string;
   produktet_name: string;
   produktet_image_url: string;
@@ -29,6 +30,7 @@ query MyQuery($subCategoryTitle: String!, $categoryTitle: String!) {
     produktet_image_url
     produktet_description
     produktet_id
+    produktet_price
   }
 }
 
@@ -36,15 +38,26 @@ query MyQuery($subCategoryTitle: String!, $categoryTitle: String!) {
 
 
 
-export default function ProductCard() {
-  const {subCategoryTitle, categoryTitle}= useParams()
-  const { data } = useQuery<{  subcategory_produktet_view: Products[] }>(PRODUCTS, {
+const ProductCard = ()=> {
+  const {subCategoryTitle, categoryTitle}= useParams();
+
+  const { data } = useQuery<{  subcategory_produktet_view: ProductCard[] }>(PRODUCTS, {
     variables: {
       subCategoryTitle: subCategoryTitle, 
       categoryTitle: categoryTitle
     }
-  }); // Destructure 'data'
+  }); 
+  const { addToWishlist } = useContext(AppContext);
   console.log('PRODUKTE', data);
+
+  const handleAddToWishlist = (product: ProductCard) =>{
+
+    if(product) {
+      addToWishlist(product);
+    }
+    
+  }
+ 
 
   return (
     <>
@@ -71,7 +84,7 @@ export default function ProductCard() {
                     <Button size="small">Details</Button>
                   </Link>
                   
-                  <IconButton color="primary" size="small">
+                  <IconButton color="primary" size="small" onClick={()=> handleAddToWishlist(item)}>
                     <FavoriteBorderIcon />
                   </IconButton>
                 </CardActions>
@@ -83,3 +96,5 @@ export default function ProductCard() {
     </>
   );
 }
+
+export default ProductCard;

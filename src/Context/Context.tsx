@@ -1,47 +1,107 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import ProductDetails from '../Components/ProductDetails';
+import ProductCard from '../Components/ProductCard';
 
-// Define the CartItem type
 interface CartItem {
   id: number;
   image: string;
   name: string;
-  // Add other properties if needed
+  price: string;
+}
+
+interface WishlistItem {
+  id: number;
+  image: string;
+  name: string;
+  price: string;
 }
 
 export const AppContext = createContext<{
-  addToCart: (productId: number) => void;
+  addToCart: (product: ProductDetails) => void;
   cartItems: CartItem[];
+  cartItemCount: number;
+  addToWishlist: (product: ProductCard) => void;
+  wishlist: WishlistItem[];
 }>({
   addToCart: () => {},
+  addToWishlist: ()=>{},
   cartItems: [],
+  cartItemCount: 0,
+  wishlist: []
 });
 
 export default function AppProvider({ children }: { children: React.ReactNode }) {
-  // Initialize cartItems as an empty array
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
-  const addToCart = (productId: number) => {
-    const addedProducts = [...cartItems];
+  const [wishlist, setWishlist] = useState<WishlistItem[]>([]); 
 
-    // Assuming you have a product variable here
-    const product = addedProducts.find((p) => p.id === productId);
-    console.log("prod",product)
-    if (product) {
-      addedProducts.push({
-        id: productId,
-        image: product.image,
-        name: product.name,
-      });
-    }
+  console.log('Carttt itemss', cartItems)
 
-    // Update the cartItems state
-    setCartItems(addedProducts);
-  };
+  console.log('wishlist itemss', wishlist)
 
-  // Define the context value
+  //Add to cart function
+  const addToCart = (product: ProductDetails) => {
+    setCartItems((prevCartItems)=> {
+      const productInCart = prevCartItems.find((item)=> item.id === product.id);
+    
+      if (!productInCart) {
+        const addedProducts = [
+          ...prevCartItems,
+          {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image_url,
+          },
+        ];
+        return addedProducts;
+      }
+
+      return prevCartItems;
+    })
+
+  }
+
+  //Badge functionality
+  const updateCartCount = () =>{
+    const totalCount = cartItems.length;
+    setCartItemCount(totalCount);
+  }
+
+  useEffect(()=>{
+    updateCartCount()
+  },[cartItems])
+
+  //Add to wishlist function
+  const addToWishlist = (product: ProductCard) => {
+    setWishlist((prevWishlist) => {
+      const productInWishlist = prevWishlist.find((item) => item.id === product.produktet_id);
+
+      if (!productInWishlist) {
+        const addedProducts = [
+          ...prevWishlist,
+          {
+            id: product.produktet_id,
+            name: product.produktet_name,
+            price: product.produktet_price,
+            image: product.produktet_image_url,
+          },
+        ];
+        return addedProducts;
+      }
+
+      return prevWishlist;
+    });
+};
+
+
   const contextValue = {
     addToCart,
     cartItems,
+    cartItemCount,
+    addToWishlist, 
+    wishlist, 
   };
 
   return (
@@ -50,3 +110,5 @@ export default function AppProvider({ children }: { children: React.ReactNode })
     </AppContext.Provider>
   );
 }
+
+
