@@ -8,8 +8,7 @@ interface CartItem {
   // Add other properties if needed
 }
 
-10
-*---------------------*export const AppContext = createContext<{
+export const AppContext = createContext<{
   addToCart: (productId: number) => void;
   cartItems: CartItem[];
 }>({
