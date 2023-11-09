@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 interface CartItem {
   id: number;
   image: string;
@@ -22,23 +22,25 @@ const Cart = () => {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4} style={{ marginTop: '10px', marginLeft: "55px" }}>
       {cartItems.map((product) => (
-        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-          <Card>
+        <Grid item key={product.id} xs={12} sm={6} md={6}>
+          <Card sx={{ display: 'flex', maxWidth:"500px", maxHeight:"350px"}}>
             <CardMedia
               component="img"
               alt={product.name}
-              height="140"
+              sx={{width: "250px" , height:"80%"}}
               image={product.image}
-              style={{ objectFit: "contain", width: "100%", height: "140px" }}
             />
-            <CardContent>
+            <Box sx={{ display: 'flex', flexDirection: 'column' , justifyContent:"center"}}>
+            <CardContent >
               <Typography variant="h6">{product.name}</Typography>
-              <Typography>ID: {product.id}</Typography>
-              <Typography>Price: {product.price}</Typography>
-              <Button onClick={() => handleDelete(product)}>Remove</Button>
+              <Typography variant="body2" sx={{color:"grey"}}>Price: {product.price}</Typography>
             </CardContent>
+            <Box ml="10px">
+              <Button onClick={() => handleDelete(product)}>Remove</Button>
+              </Box>
+            </Box>
           </Card>
         </Grid>
       ))}

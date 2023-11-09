@@ -99,13 +99,13 @@ function Navbar() {
                     <IconButton color="inherit" sx={{ marginRight: '8px' }}
                         component={Link}
                         to={"/wishlist"}>
-                        <Badge badgeContent={wishlistItemCount} color="secondary">
+                        <Badge badgeContent={wishlistItemCount} color="error">
                             <FavoriteIcon />
                         </Badge>
                     </IconButton>
                     <IconButton color="inherit" sx={{ marginRight: '8px' }} component={Link}
                         to={"/cart"}>
-                        <Badge badgeContent={cartItemCount} color='secondary'>
+                        <Badge badgeContent={cartItemCount} color='error'>
                             <ShoppingCartIcon />
                         </Badge>
 

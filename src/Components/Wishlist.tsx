@@ -1,7 +1,7 @@
 import { useContext } from "react"
 // import AppProvider from "../Context/Context"
 import { AppContext } from "../Context/Context";
-import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 interface WishlistItem {
   id: number;
@@ -20,30 +20,29 @@ const Wishlist = () => {
     console.log("ss",wishlist)
   }
   return (
-    <div>
-     <Grid container spacing={2}>
-      {wishlist.map((product)=>(
-        <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-          <Card>
+    <Grid container spacing={4} style={{ marginTop: '10px', marginLeft: "55px" }}>
+      {wishlist.map((product) => (
+        <Grid item key={product.id} xs={12} sm={6} md={6}>
+          <Card  sx={{ display: 'flex', maxWidth:"500px", maxHeight:"350px"}}>
             <CardMedia
               component="img"
               alt={product.name}
-              height="140"
+              sx={{width: "250px" , height:"50%"}}  
               image={product.image}
-              style={{objectFit: "contain", width: "100%", height: "140px"}}
             />
-          <CardContent>
-            <Typography variant="h6">{product.name}</Typography>
-            <Typography>ID: {product.id}</Typography>
-            <Typography>Price: {product.price}</Typography>
-            <Button onClick={() => handleDelete(product)}> Remove</Button>
-          </CardContent>
-            
+            <Box sx={{ display: 'flex', flexDirection: 'column' , justifyContent:"center"}}>
+            <CardContent >
+              <Typography variant="h6">{product.name}</Typography>
+              <Typography variant="body2" sx={{color:"grey"}}>Price: {product.price}</Typography>
+            </CardContent>
+            <Box ml="10px">
+              <Button onClick={() => handleDelete(product)}>Remove</Button>
+              </Box>
+            </Box>
           </Card>
         </Grid>
       ))}
-     </Grid>
-    </div>
+    </Grid>
   )
 }
 

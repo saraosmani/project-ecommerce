@@ -66,7 +66,7 @@ const ProductCard = () => {
       <div>
         <Grid container spacing={5} style={{ marginTop: '10px', marginLeft: '10px' }}>
           {data?.subcategory_produktet_view.map((item) => (
-            <Grid item xs={12} sm={6} md={3} key={item.subcategory_id}>
+            <Grid item xs={12} sm={6} md={3} lg={3} key={item.subcategory_id}>
               <Card sx={{ maxWidth: 345, height: '100%' }}>
                 <CardMedia sx={{ height: 350 }}  image={item.produktet_image_url} title={item.produktet_image_url} />
                 <CardContent sx={{height: 70}}>
