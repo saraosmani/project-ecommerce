@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import { useParams, Link } from 'react-router-dom';
 import { AppContext } from "../Context/Context";
 import { useContext, useState } from 'react';
-
+import '@fontsource/roboto/300.css';
 interface ProductCard {
   subcategory_name: string;
   produktet_name: string;
@@ -69,12 +69,12 @@ const ProductCard = () => {
             <Grid item xs={12} sm={6} md={3} key={item.subcategory_id}>
               <Card sx={{ maxWidth: 345, height: '100%' }}>
                 <CardMedia sx={{ height: 350 }}  image={item.produktet_image_url} title={item.produktet_image_url} />
-                <CardContent>
-                  <Typography gutterBottom variant="h6">
+                <CardContent sx={{height: 70}}>
+                  <Typography gutterBottom sx={{fontFamily: "roboto"}}>
                     {item.produktet_name}
                   </Typography>
                   <Typography gutterBottom variant=	'body1' sx={{color: "grey"}}>
-                    {item.produktet_price}
+                    ${item.produktet_price}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -82,7 +82,7 @@ const ProductCard = () => {
                     <Button size="small">Details</Button>
                   </Link>
                   <IconButton
-                    color={favorites[item.produktet_id] ? 'primary' : 'default'} // Check the favorite status
+                    color={favorites[item.produktet_id] ? 'error' : 'default'} // Check the favorite status
                     size="small"
                     onClick={() => handleAddToWishlist(item)}
                   >
@@ -99,4 +99,5 @@ const ProductCard = () => {
 };
 
 export default ProductCard;
+
 
