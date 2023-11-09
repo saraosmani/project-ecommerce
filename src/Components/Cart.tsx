@@ -5,9 +5,21 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+interface CartItem {
+  id: number;
+  image: string;
+  name: string;
+  price: string;
+}
+
 
 const Cart = () => {
-  const { cartItems } = useContext(AppContext);
+  const { cartItems, removeProductFromCart } = useContext(AppContext);
+
+  const handleDelete = (product: CartItem) => {
+    removeProductFromCart(product)
+  }
 
   return (
     <Grid container spacing={2}>
@@ -25,6 +37,7 @@ const Cart = () => {
               <Typography variant="h6">{product.name}</Typography>
               <Typography>ID: {product.id}</Typography>
               <Typography>Price: {product.price}</Typography>
+              <Button onClick={() => handleDelete(product)}>Remove</Button>
             </CardContent>
           </Card>
         </Grid>

@@ -22,17 +22,25 @@ export const AppContext = createContext<{
   cartItemCount: number;
   addToWishlist: (product: ProductCard) => void;
   wishlist: WishlistItem[];
+  wishlistItemCount: number;
+  removeProductFromWishlist: (product:WishlistItem) => void
+  removeProductFromCart: (product:CartItem) => void
 }>({
   addToCart: () => {},
   addToWishlist: ()=>{},
+  removeProductFromWishlist: () => {},
+  removeProductFromCart: () => {},
   cartItems: [],
   cartItemCount: 0,
-  wishlist: []
+  wishlist: [],
+  wishlistItemCount: 0 ,
+ 
 });
 
 export default function AppProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [wishlistItemCount, setWishlistItemCount] = useState(0);
 
   const [wishlist, setWishlist] = useState<WishlistItem[]>([]); 
 
@@ -58,6 +66,7 @@ export default function AppProvider({ children }: { children: React.ReactNode })
         return addedProducts;
       }
 
+
       return prevCartItems;
     })
 
@@ -72,6 +81,15 @@ export default function AppProvider({ children }: { children: React.ReactNode })
   useEffect(()=>{
     updateCartCount()
   },[cartItems])
+
+  const updateWishlistCount = () =>{
+    const totalCount = wishlist.length;
+    setWishlistItemCount(totalCount);
+  }
+
+  useEffect(()=>{
+    updateWishlistCount()
+  },[wishlist])
 
   //Add to wishlist function
   const addToWishlist = (product: ProductCard) => {
@@ -95,13 +113,24 @@ export default function AppProvider({ children }: { children: React.ReactNode })
     });
 };
 
+const removeProductFromWishlist= ( product: WishlistItem) => {
+ const removeFromWishlist= wishlist.filter((item)=> item.id !== product.id)
+ setWishlist(removeFromWishlist)
+}
 
+const removeProductFromCart= (product: CartItem) => {
+   const removeFromCart= cartItems.filter((item)=> item.id !== product.id )
+   setCartItems(removeFromCart)
+}
   const contextValue = {
     addToCart,
     cartItems,
     cartItemCount,
     addToWishlist, 
     wishlist, 
+    wishlistItemCount,
+    removeProductFromWishlist,
+    removeProductFromCart
   };
 
   return (

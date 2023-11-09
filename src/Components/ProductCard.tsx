@@ -4,13 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Typography from '@mui/material/Typography';
 import { useQuery, gql } from '@apollo/client';
 import Grid from '@mui/material/Grid'; 
 import { useParams, Link } from 'react-router-dom';
 import { AppContext } from "../Context/Context";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 interface ProductCard {
   subcategory_name: string;
@@ -38,44 +38,42 @@ query MyQuery($subCategoryTitle: String!, $categoryTitle: String!) {
 
 
 
-const ProductCard = ()=> {
-  const {subCategoryTitle, categoryTitle}= useParams();
-
-  const { data } = useQuery<{  subcategory_produktet_view: ProductCard[] }>(PRODUCTS, {
+const ProductCard = () => {
+  const { subCategoryTitle, categoryTitle } = useParams();
+  const { data } = useQuery<{ subcategory_produktet_view: ProductCard[] }>(PRODUCTS, {
     variables: {
-      subCategoryTitle: subCategoryTitle, 
-      categoryTitle: categoryTitle
-    }
-  }); 
+      subCategoryTitle: subCategoryTitle,
+      categoryTitle: categoryTitle,
+    },
+  });
   const { addToWishlist } = useContext(AppContext);
-  console.log('PRODUKTE', data);
 
-  const handleAddToWishlist = (product: ProductCard) =>{
+  const [favorites, setFavorites] = useState<{ [key: number]: boolean }>({});
 
-    if(product) {
+  const handleAddToWishlist = (product: ProductCard) => {
+    if (product) {
       addToWishlist(product);
-    }
     
-  }
- 
+      setFavorites((prevFavorites) => ({
+        ...prevFavorites,
+        [product.produktet_id]: true,
+      }));
+    }
+  };
 
   return (
     <>
       <div>
-        <Grid container spacing={2} style={{marginTop: '10px', marginLeft: '10px'}}> {/* Create a Grid container */}
+        <Grid container spacing={5} style={{ marginTop: '10px', marginLeft: '10px' }}>
           {data?.subcategory_produktet_view.map((item) => (
-            <Grid item xs={12} sm={6} md={3} key={item.subcategory_id}> {/* Specify grid item size for different screen sizes */}
-              <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                sx={{ height: 300 }}
-                  image={item.produktet_image_url}
-                  title={item.produktet_image_url}
-                />
+            <Grid item xs={12} sm={6} md={3} key={item.subcategory_id}>
+              <Card sx={{ maxWidth: 345, height: '100%' }}>
+                <CardMedia sx={{ height: 350 }}  image={item.produktet_image_url} title={item.produktet_image_url} />
                 <CardContent>
-                  <Typography gutterBottom variant="h5">
+                  <Typography gutterBottom variant="h6">
                     {item.produktet_name}
                   </Typography>
-                  <Typography gutterBottom variant="h6">
+                  <Typography gutterBottom variant=	'body1' sx={{color: "grey"}}>
                     {item.produktet_price}
                   </Typography>
                 </CardContent>
@@ -83,9 +81,12 @@ const ProductCard = ()=> {
                   <Link to={`/category/${categoryTitle}/${subCategoryTitle}/${item.produktet_id}`}>
                     <Button size="small">Details</Button>
                   </Link>
-                  
-                  <IconButton color="primary" size="small" onClick={()=> handleAddToWishlist(item)}>
-                    <FavoriteBorderIcon />
+                  <IconButton
+                    color={favorites[item.produktet_id] ? 'primary' : 'default'} // Check the favorite status
+                    size="small"
+                    onClick={() => handleAddToWishlist(item)}
+                  >
+                    <FavoriteIcon />
                   </IconButton>
                 </CardActions>
               </Card>
@@ -95,6 +96,7 @@ const ProductCard = ()=> {
       </div>
     </>
   );
-}
+};
 
 export default ProductCard;
+

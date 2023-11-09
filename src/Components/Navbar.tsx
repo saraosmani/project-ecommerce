@@ -53,7 +53,7 @@ function Navbar() {
     const [drawer, setDrawer] = useState(false);
     const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
-    const { cartItemCount } = useContext(AppContext);
+    const { cartItemCount, wishlistItemCount } = useContext(AppContext);
 
     const { data } = useQuery<{ categories: Category[] }>(CATEGORIES, {
         variables: {
@@ -64,9 +64,9 @@ function Navbar() {
     const { data: subcategoriesData } =
         useQuery<{ subcategory_categories_view: Subcategory[] }>(SUBCATEGORY, {
             variables: {
-                title: hoveredCategory || '', 
+                title: hoveredCategory || '',
             },
-            skip: !hoveredCategory, 
+            skip: !hoveredCategory,
         });
 
     const handleCategoryMouseEnter = (title: string) => {
@@ -92,22 +92,24 @@ function Navbar() {
             <AppBar position="fixed" sx={{ width: '100%' }}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}></Typography>
-                    <IconButton color="inherit" sx={{ marginRight: '8px' }}  component={Link}
+                    <IconButton color="inherit" sx={{ marginRight: '8px' }} component={Link}
                         to={"/user-profile"}>
                         <AccountCircleIcon />
                     </IconButton>
                     <IconButton color="inherit" sx={{ marginRight: '8px' }}
                         component={Link}
                         to={"/wishlist"}>
-                        <FavoriteIcon />
+                        <Badge badgeContent={wishlistItemCount} color="secondary">
+                            <FavoriteIcon />
+                        </Badge>
                     </IconButton>
                     <IconButton color="inherit" sx={{ marginRight: '8px' }} component={Link}
                         to={"/cart"}>
-                            <Badge badgeContent={cartItemCount} color='secondary'>
+                        <Badge badgeContent={cartItemCount} color='secondary'>
                             <ShoppingCartIcon />
-                            </Badge>
-                            
-                        
+                        </Badge>
+
+
                     </IconButton>
                     <IconButton color="inherit" onClick={toggleDrawer(true)} edge="start" sx={{
                         marginLeft: '10px',
@@ -137,10 +139,9 @@ function Navbar() {
                                 onMouseLeave={handleCategoryMouseLeave}
                             >
                                 <ListItem
-                                    button
+
                                     key={category.id}
-                                    component={Link}
-                                    to={`/category/${category.title.toLowerCase()}`}
+
                                 >
                                     <ListItemText
                                         primary={

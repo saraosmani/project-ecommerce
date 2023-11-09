@@ -1,12 +1,9 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-// import SignIn from './Components/SignIn'
 import ProductCard from './Components/ProductCard'
 import ProductDetails from './Components/ProductDetails'
-import SubcategoryPage from './Components/SubcategoryPage/SubcategoryPage'
-// import Navbar from './Components/Navbar'
-import HomepageContent from "./HomepageContent"
-import HomePage from './Components/HomePage'
+import HomepageContent from "./Components/HomepageContent"
+import HomePage from "./Components/HomePAge"
 import Cart from './Components/Cart'
 import Wishlist from './Components/Wishlist'
 import UserProfile from './Components/UserProfile'
@@ -22,7 +19,7 @@ function App() {
         <Route path='/' element={<HomePage/>}>
         <Route index element={<HomepageContent />}/>
         <Route path="category" element={<ProductCard />}/>
-        <Route path='category/:categoryTitle' element={<SubcategoryPage/>}/>
+        {/* <Route path='category/:categoryTitle' element={<SubcategoryPage/>}/> */}
         <Route path='category/:categoryTitle/:subCategoryTitle' element={<ProductCard/>}/>
         <Route path='category/:categoryTitle/:subCategoryTitle/:productId' element={<ProductDetails/>}/>
         <Route path='/cart' element={<Cart/>}/>

@@ -1,8 +1,35 @@
 INSERT INTO produktet (id,name, price, description, image_url,sale)
 VALUES
-  (1,'Satin dress', 99.99, 'Satin dress for a date with london boy', 'https://static.zara.net/photos///2023/I/0/1/p/1067/905/800/2/w/850/1067905800_6_1_1.jpg?ts=1690183592424',true),
-  (2,'Shirt', 29.99, 'Cargo shirt', 'https://static.zara.net/photos///2023/I/0/1/p/8739/284/507/2/w/850/8739284507_6_1_1.jpg?ts=1695371592093',false),
-  (3,'Jeans', 39.99, 'Jeans', 'https://static.zara.net/photos///2023/I/0/1/p/6045/224/400/2/w/850/6045224400_6_1_1.jpg?ts=1690987691536',true),
-  (4,'Blazer', 49.99, 'Blazer desc', 'https://static.zara.net/photos///2023/I/0/1/p/8378/108/075/2/w/850/8378108075_6_1_1.jpg?ts=1693478102586',false),
-  (5,'Shirt', 49.99, 'Shirt men desc', 'https://static.zara.net/photos///2023/I/0/2/p/0975/510/400/2/w/850/0975510400_6_1_1.jpg?ts=1693470668513',false),
-  (6,'Jeans', 49.99, 'Jeans men desc', 'https://static.zara.net/photos///2023/I/0/2/p/4060/311/406/2/w/850/4060311406_6_1_1.jpg?ts=1687448221182',true);
+  (1,'MIDI DRESS WITH GATHERING', 99.99, 'Midi dress with high neck and long sleeves. Gathered detail on the sides.', 'https://static.zara.net/photos///2023/I/0/1/p/5584/640/800/2/w/750/5584640800_6_1_1.jpg?ts=1697182004447',true),
+  (2,'EMBROIDERED RHINESTONE SHIRT', 29.99, 'Collared semi-sheer shirt featuring long sleeves with cuffs. Chest patch pocket.', 'https://static.zara.net/photos///2023/I/0/1/p/4786/271/251/2/w/750/4786271251_6_1_1.jpg?ts=1689673598130',false),
+  (3,'Z1975 WIDE-LEG CROPPED HIGH-WAIST BELTED JEANS', 39.99, 'High-waist jeans with a belt. Wide leg and cropped leg. Front zip fly and button fastening.', 'https://static.zara.net/photos///2023/I/0/1/p/1889/171/427/2/w/750/1889171427_6_1_1.jpg?ts=1689863991306',true),
+  (4,'MINIMALIST COTTON BLEND SWEATSHIRT', 49.99, 'Sweatshirt made of a cotton blend. Round neckline and long sleeves. Ribbed trims.', 'https://static.zara.net/photos///2023/I/0/1/p/5388/453/612/2/w/750/5388453612_6_1_1.jpg?ts=1692341218408',false),
+  (5,'STRIPED TEXTURED SHIRT', 49.99, 'Relaxed fit collared shirt featuring long sleeves with buttoned cuffs and a button-up front.', 'https://static.zara.net/photos///2023/I/0/2/p/0975/510/400/2/w/850/0975510400_6_1_1.jpg?ts=1693470668513',false),
+  (6,'STRAIGHT FIT JEANS', 49.99, 'Straight fit jeans with five pockets. Faded effect. Front button fastening.', 'https://static.zara.net/photos///2023/I/0/2/p/4060/311/406/2/w/850/4060311406_6_1_1.jpg?ts=1687448221182',true),
+  (7, 'CHENILLE SWEATER', 39.99, 'Sweatshirt with a round neck and long sleeves. Cutwork fabric detail.', 'https://static.zara.net/photos///2023/I/0/1/p/7901/420/712/2/w/750/7901420712_6_1_1.jpg?ts=1699345492142', false),
+  (8, 'ZW COLLECTION DOUBLE-FACED BIKER JACKET', 79.99, 'Cropped biker jacket made of leather effect fabric with matching faux shearling lining. Loose-fitting lapel collar and long sleeves. Front pockets with metal zips.', 'https://static.zara.net/photos///2023/I/0/1/p/2969/262/800/2/w/750/2969262800_6_1_1.jpg?ts=1696932962673', true),
+  (9, 'PLATFORM SNEAKERS', 59.99, 'Trainers in contrast colours. Platform sole. Lace-up fastening.', 'https://static.zara.net/photos///2023/I/1/1/p/5417/110/002/2/w/750/5417110002_15_1_1.jpg?ts=1696504186863', false),
+  (10, 'SATIN SHIRT WITH BOW', 19.99, 'Collared shirt featuring a contrast tie and long sleeves. Button-up front fastening.', 'https://static.zara.net/photos///2024/V/0/1/p/3666/051/712/2/w/750/3666051712_6_1_1.jpg?ts=1699448258699', true),
+  (11, 'COTTON BLEND HOODIE', 49.99, 'Cotton blend hoodie featuring an adjustable drawstring hood, long cuffed sleeves and a ribbed elastic hem.', 'https://static.zara.net/photos///2023/I/0/1/p/4729/800/712/2/w/750/4729800712_6_1_1.jpg?ts=1698929220812', true),
+  (12, 'ZW OVERSIZE DENIM JACKET', 69.99, 'Loose-fitting denim jacket featuring a lapel collar and long sleeves with cuffs. ', 'https://static.zara.net/photos///2023/I/0/1/p/1213/244/428/2/w/750/1213244428_6_1_1.jpg?ts=1691581509579', false),
+  (13, 'ROPE SNEAKERS', 44.99, 'Sneakers. Six-eyelet facing. Rope-style laces.', 'https://static.zara.net/photos///2023/I/1/2/p/2201/220/202/2/w/750/2201220202_6_1_1.jpg?ts=1695808515129', true),
+  (14, 'TEXTURED POLO SHIRT', 29.99, 'Collared polo shirt with a button-up front and short sleeves. Split hem.', 'https://static.zara.net/photos///2023/I/0/2/p/0526/420/800/2/w/750/0526420800_6_1_1.jpg?ts=1687859678086', false),
+  (15, 'RELAXED CARGO JEANS', 34.99, 'Relaxed fit mid-rise jeans made of unwashed denim.', 'https://static.zara.net/photos///2023/I/0/2/p/2553/330/400/2/w/750/2553330400_6_1_1.jpg?ts=1695975121772', true),
+  (16, 'CONTRAST PRINT SWEATSHIRT', 59.99, 'Oversize hoodie with long sleeves. Front pouch pocket.', 'https://static.zara.net/photos///2023/I/0/2/p/6224/295/420/2/w/750/6224295420_6_1_1.jpg?ts=1696319325917', true),
+  (17, 'DRAPED MINI DRESS', 49.99, 'Dress with a V-neckline and long sleeves. Gathered details and side elastic.', 'https://static.zara.net/photos///2023/I/0/1/p/9878/269/446/2/w/750/9878269446_6_1_1.jpg?ts=1699007106075', false),
+  (18, 'EMBOSSED BACKPACK', 29.99, 'Monochrome backpack with an embossed exterior. The main compartment closes with a zip.', 'https://static.zara.net/photos///2023/I/1/2/p/3243/220/800/2/w/750/3243220800_6_1_1.jpg?ts=1691506045224', true),
+  (19, 'FLOWING SHIRT WITH STUDS', 39.99, 'Flowing collared shirt with long cuffed sleeves. Patch pockets with flaps on the chest.', 'https://static.zara.net/photos///2023/I/0/1/p/3564/186/406/2/w/750/3564186406_6_1_1.jpg?ts=1693410584287', false),
+  (20, 'TRF HIGH-RISE WIDE-LEG JEANS', 24.99, 'High-waist jeans with five pockets. Extra long wide leg.', 'https://static.zara.net/photos///2023/I/0/1/p/5520/124/800/2/w/750/5520124800_6_1_1.jpg?ts=1695197328121', true),
+  (21, 'BEJEWELLED EARRINGS', 19.99, 'Metal dangle earrings.', 'https://static.zara.net/photos///2023/I/0/1/p/4736/294/303/2/w/750/4736294303_6_1_1.jpg?ts=1699343369538', false),
+  (22, 'PRINTED MINI DRESS', 34.99, 'Slot collar dress with long sleeves with elasticated trims.', 'https://static.zara.net/photos///2023/I/0/1/p/9878/274/093/2/w/750/9878274093_6_1_1.jpg?ts=1699443992154', true),
+  (23, 'STRIPED TEXTURED SHIRT', 14.99, 'Relaxed fit shirt made of a cotton blend. Lapel collar and long sleeves with buttoned cuffs.', 'https://static.zara.net/photos///2023/I/0/2/p/6523/077/071/2/w/750/6523077071_6_1_1.jpg?ts=1695295467202', false),
+  (24, 'VELVET KITTEN-HEEL MULES WITH BOW', 54.99, 'Velvet kitten-heel mules. Bow detail on the front. Square toe.', 'https://static.zara.net/photos///2023/I/1/1/p/1306/310/800/2/w/750/1306310800_15_1_1.jpg?ts=1699457729448', true),
+  (25, 'STRAIGHT FIT JEANS - LIMITED EDITION', 79.99, 'Straight fit jeans. Five pockets. Faded effect. Front zip fly and button fastening.', 'https://static.zara.net/photos///2023/I/0/2/p/2553/344/400/2/w/750/2553344400_6_1_1.jpg?ts=1698923167501', false),
+  (26, 'WOOL BLEND SWEATER', 12.99, 'Sweater made of a spun wool blend. Featuring a round neckline, long sleeves and ribbed trims.', 'https://static.zara.net/photos///2023/I/0/2/p/6674/310/711/2/w/750/6674310711_6_1_1.jpg?ts=1699373367761', false),
+  (27, 'BOMBER JACKET WITH PATCH', 18.99, 'Varsity jacket with a quilted interior. Jetted hip pockets and inside pocket detail.', 'https://static.zara.net/photos///2023/I/0/2/p/6318/401/600/2/w/750/6318401600_6_1_1.jpg?ts=1696921949571', false),
+  (28, 'NYLON BELT BAG', 28.99, 'Soft belt bag. Nylon upper. Main compartment with zip closure and an inside pocket with no closure.', 'https://static.zara.net/photos///2023/I/1/2/p/3615/220/800/2/w/750/3615220800_6_1_1.jpg?ts=1689772245538', false),
+  (29, 'CROSSBODY BAG', 38.99, 'Crossbody bag with a flap. Two adjustable and detachable straps, one a canvas shoulder strap and the other a crossbody strap.', 'https://static.zara.net/photos///2023/I/1/1/p/6011/210/814/32/w/750/6011210814_6_5_1.jpg?ts=1690296962536', false),
+  (30, 'SOFT CAP', 38.99, 'Peak cap with an adjustable strap at the back.', 'https://static.zara.net/photos///2023/V/0/2/p/9065/300/800/2/w/750/9065300800_6_1_1.jpg?ts=1674816051755', false);
+
+
+

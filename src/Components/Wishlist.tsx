@@ -2,12 +2,23 @@ import { useContext } from "react"
 // import AppProvider from "../Context/Context"
 import { AppContext } from "../Context/Context";
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Button } from "@mui/material";
+interface WishlistItem {
+  id: number;
+  image: string;
+  name: string;
+  price: string;
+}
 
 const Wishlist = () => {
 
-  const { wishlist } = useContext(AppContext);
-
+  const { wishlist,removeProductFromWishlist } = useContext(AppContext);
   console.log('wishlist ne komponent', wishlist)
+ 
+  const handleDelete = (product:  WishlistItem) => {
+    removeProductFromWishlist(product)
+    console.log("ss",wishlist)
+  }
   return (
     <div>
      <Grid container spacing={2}>
@@ -25,6 +36,7 @@ const Wishlist = () => {
             <Typography variant="h6">{product.name}</Typography>
             <Typography>ID: {product.id}</Typography>
             <Typography>Price: {product.price}</Typography>
+            <Button onClick={() => handleDelete(product)}> Remove</Button>
           </CardContent>
             
           </Card>

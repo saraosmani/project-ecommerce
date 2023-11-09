@@ -33,13 +33,13 @@ const ProductDetails = () => {
 
   const { data } = useQuery<{ produktet: ProductDetails[] }>(PRODUCT_DETAILS);
 
-  const { addToCart } =useContext(AppContext)
+  const { addToCart, removeProduct } =useContext(AppContext)
 
   if (!data) {
     return <div>Loading...</div>;
   }
 
-  const product = data.produktet.find((p) => p.id === parseInt(productId, 10));
+  const product = data.produktet.find((p) => p.id === parseInt(productId));
 
   if (!product) {
     return <div>Product not found</div>;
